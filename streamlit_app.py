@@ -37,8 +37,8 @@ def rotate(point, angle):
 
 
 with st.echo(code_location='below'):
-    degree = st.slider("第六軸旋轉角度", 1, -360, 360)
+    degree = st.slider("第六軸逆時鐘旋轉角度", 1, 0, 360)
     
     center_of_gravity1 = (-6.86, -27.49, -99.01)
     
-    print(rotate(center_of_gravity1))
+    print(rotate(center_of_gravity1, degree))
