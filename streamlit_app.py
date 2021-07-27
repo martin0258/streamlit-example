@@ -46,4 +46,4 @@ newcogxy = rotate(center_of_gravity1, degree)
 newcog = (newcogxy[0], newcogxy[1], center_of_gravity1[2])
 
 st.write(f"原始重心座標：{center_of_gravity1}")
-st.write(f"原始重心座標：{newcog}")
+st.write(f"原始重心座標：{newcog:.2f}")
