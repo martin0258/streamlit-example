@@ -1,11 +1,8 @@
-from collections import namedtuple
-import altair as alt
 import math
-import pandas as pd
 import streamlit as st
 
 """
-# 第六軸旋轉後的重心座標轉換
+# 手臂第六軸旋轉後的重心座標轉換
 
 數學公式：
 - 第六軸旋轉前，TCP 座標系下的夾具重心座標為 (x1, y2, z1) 
@@ -13,6 +10,7 @@ import streamlit as st
     - `x2 = x1 * cosθ - y1 * sinθ`
     - `y2 = x1 * sinθ + y1 * cosθ`
     - `z2 = z1`
+- 若第六軸順時鐘旋轉 θ，則上述公式使用 -θ
 
 範例：
 - 第六軸旋轉前，TCP 座標系下的夾具重心座標為 (-6.86, -27.49, -99.01)
