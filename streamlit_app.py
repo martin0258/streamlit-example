@@ -36,9 +36,14 @@ def rotate(point, angle):
     return qx, qy
 
 
-with st.echo(code_location='below'):
-    degree = st.slider("第六軸逆時鐘旋轉角度", 1, 0, 360)
-    
-    center_of_gravity1 = (-6.86, -27.49, -99.01)
-    
-    print(rotate(center_of_gravity1, degree))
+
+degree = st.slider("第六軸逆時鐘旋轉角度", 1, 0, 360)
+
+center_of_gravity1 = (-6.86, -27.49, -99.01)
+
+print(rotate(center_of_gravity1, degree))
+newcogxy = rotate(center_of_gravity1, degree)
+newcog = (newcogxy[0], newcogxy[1], center_of_gravity1[2])
+
+st.write(f"原始重心座標：{center_of_gravity1}")
+st.write(f"原始重心座標：{newcog}")
