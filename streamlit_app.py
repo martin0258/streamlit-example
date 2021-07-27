@@ -35,15 +35,13 @@ def rotate(point, angle):
     qy = math.sin(radian) * px + math.cos(radian) * py
     return qx, qy
 
+center_of_gravity1 = (-6.86, -27.49, -99.01)
 
+st.write(f"原始重心座標：{center_of_gravity1}")
 
 degree = st.slider("第六軸逆時鐘旋轉角度", 1, 0, 360)
 
-center_of_gravity1 = (-6.86, -27.49, -99.01)
-
-print(rotate(center_of_gravity1, degree))
 newcogxy = rotate(center_of_gravity1, degree)
 newcog = (round(newcogxy[0], 2), round(newcogxy[1], 2), center_of_gravity1[2])
 
-st.write(f"原始重心座標：{center_of_gravity1}")
-st.write(f"原始重心座標：{newcog}")
+st.write(f"新的重心座標：{newcog}")
