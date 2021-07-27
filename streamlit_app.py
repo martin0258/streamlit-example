@@ -19,6 +19,7 @@ import streamlit as st
     - `y2 = -6.86 * sin90° + (-27.49) * cos90° = -6.86`
     - `z2 = -99.01`
 
+參考資料: Rotation matrix https://en.wikipedia.org/wiki/Rotation_matrix
 ## 展示
 """
 import math
