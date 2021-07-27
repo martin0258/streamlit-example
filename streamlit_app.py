@@ -5,34 +5,40 @@ import pandas as pd
 import streamlit as st
 
 """
-# Welcome to Streamlit!
+# 第六軸旋轉後的重心座標轉換
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:
+數學公式：
+- 第六軸旋轉前，TCP 座標系下的夾具重心座標為 (x1, y2, z1) 
+- 第六軸逆時鐘旋轉 θ 後，TCP 座標系下的夾具重心座標變為 (x2, y2, z2) 
+    - x2 = x1 * cosθ - y1 * sinθ
+    - y2 = x1 * sinθ + y1 * cosθ
+    - z2 = z1
 
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+範例：
+- 第六軸旋轉前，TCP 座標系下的夾具重心座標為 (-6.86, -27.49, -99.01)
+- 第六軸逆時鐘旋轉 90 度後，TCP 座標系下的夾具重心座標變為 (27.49, -6.86, -99.01)
+    - x2 = -6.86 * cos90 - (-27.49) * sin90 = 27.49
+    - y2 = -6.86 * sin90 + (-27.49) * cos90 = -6.86
+    - z2 = -99.01
 
-In the meantime, below is an example of what you can do with just a few lines of code:
 """
+import math
+
+def rotate(point, angle):
+    """
+    Rotate a point counterclockwise by a given angle around the origin (0,0).
+    The angle should be given in degrees.
+    """
+    radian = math.radians(angle)
+    px, py = point
+    qx = math.cos(radian) * px - math.sin(radian) * py
+    qy = math.sin(radian) * px + math.cos(radian) * py
+    return qx, qy
 
 
 with st.echo(code_location='below'):
-    total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
-    num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
-
-    Point = namedtuple('Point', 'x y')
-    data = []
-
-    points_per_turn = total_points / num_turns
-
-    for curr_point_num in range(total_points):
-        curr_turn, i = divmod(curr_point_num, points_per_turn)
-        angle = (curr_turn + 1) * 2 * math.pi * i / points_per_turn
-        radius = curr_point_num / total_points
-        x = radius * math.cos(angle)
-        y = radius * math.sin(angle)
-        data.append(Point(x, y))
-
-    st.altair_chart(alt.Chart(pd.DataFrame(data), height=500, width=500)
-        .mark_circle(color='#0068c9', opacity=0.5)
-        .encode(x='x:Q', y='y:Q'))
+    degree = st.slider("第六軸旋轉角度", 1, -360, 360)
+    
+    center_of_gravity1 = (-6.86, -27.49, -99.01)
+    
+    print(rotate(center_of_gravity1))
