@@ -39,9 +39,13 @@ center_of_gravity1 = (-6.86, -27.49, -99.01)
 
 st.write(f"原始重心座標：{center_of_gravity1}")
 
+cog_x = st.number_input("原始重心X", value=center_of_gravity1[0])
+cog_y = st.number_input("原始重心Y", value=center_of_gravity1[1])
+cog_z = st.number_input("原始重心Z", value=center_of_gravity1[2])
+
 degree = st.slider("第六軸逆時鐘旋轉角度", 1, 0, 360)
 
-newcogxy = rotate(center_of_gravity1, degree)
-newcog = (round(newcogxy[0], 2), round(newcogxy[1], 2), center_of_gravity1[2])
+newcogxy = rotate((cog_x, cog_y, cog_z), degree)
+newcog = (round(newcogxy[0], 2), round(newcogxy[1], 2), cog_z)
 
 st.write(f"新的重心座標：{newcog}")
